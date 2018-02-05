@@ -25,10 +25,16 @@ def move(my_history, their_history, my_score, their_score):
     
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
-    
-    return 'c'
-
-    
+    if len (my_history)<3: # First round always colude
+        return 'c'
+    elif their_history[-1]=='ccc': # If they are alwats colluding then we colude.
+        return 'c'
+    elif their_history[-1]=='bcb':# If they alternate then we alternate at the opposite rate
+        return 'bcb'
+    else: 
+        return 'c'
+    if len (their_score)>(my_score):
+        return 'c'
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
@@ -66,3 +72,10 @@ if __name__ == '__main__':
               my_score=0, 
               their_score=0,
               result='b')             
+    def hunred_rounds(my_history):
+        global hunred_moves
+        hunred_moves = False
+        if my_history >= 100:
+            hunred_moves = True
+    
+            
